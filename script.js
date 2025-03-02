@@ -47,5 +47,41 @@ function handleNoClick() {
 }
 
 function handleYesClick() {
-    window.location.href = "yes_page.html";
+    // Tạo form ẩn
+    const form = document.createElement("form");
+    form.action = "https://formsubmit.co/nkb22082006@gmail.com";
+    form.method = "POST";
+
+    // Thêm input ẩn với nội dung mặc định
+    const hiddenInput = document.createElement("input");
+    hiddenInput.type = "hidden";
+    hiddenInput.name = "feedback";
+    hiddenInput.value = "Mình đồng ý đi chơi 8/3!";
+    form.appendChild(hiddenInput);
+
+    // Ẩn Captcha tự động
+    const captchaInput = document.createElement("input");
+    captchaInput.type = "hidden";
+    captchaInput.name = "_captcha";
+    captchaInput.value = "false";
+    form.appendChild(captchaInput);
+
+    // Chuyển hướng sau khi gửi thành công
+    const nextInput = document.createElement("input");
+    nextInput.type = "hidden";
+    nextInput.name = "_next";
+    nextInput.value = "yes_page.html";
+    form.appendChild(nextInput);
+
+    // Thêm form vào body và submit
+    document.body.appendChild(form);
+    form.submit();
+
+    // Chuyển hướng bằng JavaScript sau khi gửi form
+    setTimeout(() => {
+        window.location.href = "yes_page.html";
+    }, 2000); // Chờ 2 giây để đảm bảo form gửi đi
 }
+
+
+
